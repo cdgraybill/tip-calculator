@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="tip.css">
+
+    <title>Tip Calculator</title>
+  </head>
+  <body>
+    <div class='container'>
+        <div class='card border-light'>
+            <h4 class='card-header text-center'>
+                Tip Calculator
+            </div>
+            <div class="card-body">
+            <div class='form-group'>
+                <form>
+                <p class='text-center'>How much was the bill?
+                </p>
+                <div class="text-center"><input id='billAmount' type='number' placeholder='Bill Amount'></>
+                <br>
+                <br>
+                <p class='text-center'>How would you rate your service?
+                </p>
+                <select id='rateService'>
+                    <option selected value="0">Select an option</option>
+                    <option value = '.1'>10% - Poor</option>
+                    <option value = '.15'>15% - Average</option>
+                    <option value = '.2'>20% - Great</option>
+                    <option value = '.3'>30% - Fantastic!</option>
+                </select>
+                </form>
+                <br>
+                <br>
+                <button id='calculate' class='btn btn-primary text-align'>Calculate Tip</button>
+                <div id='output' class="text-center">
+                    <h3>Your tip:</h3>
+                    <h2 id='tipOutput'>
+                    </h2>
+                </div>
+            </div class='form-group'>
+            </div>
+        </div>
+    <script>
+   function calculateTip() {
+  var billAmt = document.getElementById("billAmount").value;
+  var serviceQual = document.getElementById("rateService").value;
+
+  //validate input
+  if (billAmt === "" || serviceQual == 0) {
+    alert("Please enter values");
+    return;
+  }
+
+  //Calculate tip
+  var total = (billAmt * serviceQual);
+  //round to two decimal places
+  total = Math.round(total * 100) / 100;
+  //next line allows us to always have two digits after decimal point
+  total = total.toFixed(2);
+  //Display the tip
+  document.getElementById("output").style.display = "block";
+  document.getElementById("tipOutput").style.display = "block";
+  document.getElementById("tipOutput").innerHTML = '$'+total;
+ console.log(total);
+}
+
+//Hide the tip amount on load
+document.getElementById("output").style.display = "none";
+document.getElementById("tipOutput").style.display = "none";
+
+//click to call function
+document.getElementById("calculate").onclick = function() {
+  calculateTip();
+
+};
+
+    </script>
+  </body>
+</html>
